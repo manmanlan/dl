@@ -39,6 +39,9 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			
-			print("attac")
-			right_weapon.idle_attack()
+			if Input.is_action_pressed("up") and right_weapon.has_method("up_attack"):
+				print("up_attack")
+				right_weapon.up_attack()
+			elif right_weapon.has_method("idle_attack"):
+				print("attac")
+				right_weapon.idle_attack()
