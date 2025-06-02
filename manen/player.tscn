@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0bu3en0pje13"]
+[gd_scene load_steps=7 format=3 uid="uid://b0bu3en0pje13"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_oqntt"]
+[ext_resource type="Script" path="res://manen/player.gd" id="1_oqntt"]
 [ext_resource type="Texture2D" uid="uid://bfri4gtch0mbu" path="res://icon.svg" id="2_20y52"]
+[ext_resource type="Script" path="res://manen/spring_arm_3d.gd" id="3_r8bqo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vktso"]
 
@@ -10,7 +11,7 @@ albedo_texture = ExtResource("2_20y52")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i564t"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.97073, 0)
 script = ExtResource("1_oqntt")
 
@@ -21,5 +22,10 @@ shape = SubResource("CapsuleShape3D_vktso")
 material_override = SubResource("StandardMaterial3D_qqjx6")
 mesh = SubResource("CapsuleMesh_i564t")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.64643, 0.762973, 0, -0.762973, 0.64643, 0, 4.08739, 4.74456)
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.509117, 0)
+spring_length = 6.0
+script = ExtResource("3_r8bqo")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+unique_name_in_owner = true
