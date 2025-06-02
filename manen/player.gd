@@ -3,7 +3,12 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+@onready var right_hand: Node3D = %right_hand
 
+@onready var left_hand: Node3D = %left_hand
+
+@onready var right_weapon=right_hand.get_child(0)
+@onready var left_weapon=left_hand.get_child(0)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -24,9 +29,16 @@ func _physics_process(delta: float) -> void:
 		velocity.z = direction.z * SPEED
 		# Make the player face the movement direction
 		var look_target = global_transform.origin + Vector3(direction.x, 0, direction.z)
-		$MeshInstance3D.look_at(look_target, Vector3.UP)
+		$all_da_shit.look_at(look_target, Vector3.UP)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			
+			print("attac")
+			right_weapon.idle_attack()
