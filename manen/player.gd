@@ -21,7 +21,10 @@ var targeting=false
 func _physics_process(delta: float) -> void:
 	if targeting:
 		if target!=null:
-			$all_da_shit.look_at(target.global_transform.origin, Vector3.UP)
+			var target_pos = target.global_transform.origin
+			target_pos.y = $all_da_shit.global_transform.origin.y
+			$all_da_shit.look_at(target_pos, Vector3.UP)
+
 		else:
 			get_nearest_target()
 	if Input.is_action_pressed("run"):
