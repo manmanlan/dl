@@ -15,15 +15,13 @@ run/main_scene="res://manen/test.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-
-[global_group]
-
-enemy=""
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
 
+[global_group]
+
+enemy=""
 
 [input]
 
