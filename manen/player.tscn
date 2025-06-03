@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0bu3en0pje13"]
+[gd_scene load_steps=13 format=3 uid="uid://b0bu3en0pje13"]
 
 [ext_resource type="Script" path="res://manen/player.gd" id="1_oqntt"]
 [ext_resource type="Texture2D" uid="uid://bfri4gtch0mbu" path="res://icon.svg" id="2_20y52"]
@@ -13,21 +13,6 @@ albedo_texture = ExtResource("2_20y52")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i564t"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_mvdrq"]
-
-[sub_resource type="Animation" id="Animation_tbauy"]
-resource_name = "idle_attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.4, 0.766667, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.785398, 0, 0), Vector3(0, 0, 0), Vector3(-2.44346, 0, 0), Vector3(-2.44346, 0, 0), Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_kxxi0"]
 length = 0.001
@@ -44,11 +29,29 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_tbauy"]
+resource_name = "idle_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.4, 0.766667, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.785398, 0, 0), Vector3(0, 0, 0), Vector3(-2.44346, 0, 0), Vector3(-2.44346, 0, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bspay"]
 _data = {
 "RESET": SubResource("Animation_kxxi0"),
 "idle_attack": SubResource("Animation_tbauy")
 }
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3qbuw"]
+height = 3.9263
 
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.97073, 0)
@@ -80,7 +83,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.389635, 0, -0.467461)
 script = ExtResource("4_mitkv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="all_da_shit/right_hand/test_weapon"]
-transform = Transform3D(0.422595, 0, 0, 0, 2.23865, 0, 0, 0, 0.252126, 0, 1.20673, 0)
+transform = Transform3D(0.422595, 0, 0, 0, 3.56687, 0, 0, 0, 0.252126, 0, 2.01939, 0)
 mesh = SubResource("BoxMesh_mvdrq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="all_da_shit/right_hand/test_weapon"]
@@ -88,6 +91,14 @@ libraries = {
 "": SubResource("AnimationLibrary_bspay")
 }
 
+[node name="Area3D" type="Area3D" parent="all_da_shit/right_hand/test_weapon"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="all_da_shit/right_hand/test_weapon/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08883, 0)
+shape = SubResource("CapsuleShape3D_3qbuw")
+
 [node name="left_hand" type="Node3D" parent="all_da_shit"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.445518, 0, -0.389377)
+
+[connection signal="body_entered" from="all_da_shit/right_hand/test_weapon/Area3D" to="all_da_shit/right_hand/test_weapon" method="_on_area_3d_body_entered"]
