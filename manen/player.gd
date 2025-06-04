@@ -21,8 +21,12 @@ var targeting=false
 func _physics_process(delta: float) -> void:
 	if targeting:
 		if target!=null:
+			
+			
+			
 			var target_pos = target.global_transform.origin
 			target_pos.y = $all_da_shit.global_transform.origin.y
+			$SpringArm3D.look_at(target_pos, Vector3.UP)
 			$all_da_shit.look_at(target_pos, Vector3.UP)
 
 		else:
