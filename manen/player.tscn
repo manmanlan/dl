@@ -50,8 +50,8 @@ _data = {
 "idle_attack": SubResource("Animation_tbauy")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3qbuw"]
-height = 3.9263
+[sub_resource type="BoxShape3D" id="BoxShape3D_24qje"]
+size = Vector3(1, 3.7887, 1)
 
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.97073, 0)
@@ -94,8 +94,8 @@ libraries = {
 [node name="Area3D" type="Area3D" parent="all_da_shit/right_hand/test_weapon"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="all_da_shit/right_hand/test_weapon/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08883, 0)
-shape = SubResource("CapsuleShape3D_3qbuw")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1907, 0)
+shape = SubResource("BoxShape3D_24qje")
 
 [node name="left_hand" type="Node3D" parent="all_da_shit"]
 unique_name_in_owner = true
