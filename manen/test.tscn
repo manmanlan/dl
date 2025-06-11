@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwgb5isjl8x12"]
+[gd_scene load_steps=9 format=3 uid="uid://bwgb5isjl8x12"]
 
-[ext_resource type="PackedScene" uid="uid://bxde43rtuflnb" path="res://Deny/Scenes/hud.tscn" id="1_8wq6s"]
 [ext_resource type="Texture2D" uid="uid://bfri4gtch0mbu" path="res://icon.svg" id="1_de2cm"]
 [ext_resource type="PackedScene" uid="uid://b0bu3en0pje13" path="res://manen/player.tscn" id="2_kw4iq"]
 [ext_resource type="Script" path="res://manen/enemy.gd" id="3_lnfe4"]
@@ -29,9 +28,6 @@ material_override = SubResource("StandardMaterial3D_hyral")
 mesh = SubResource("BoxMesh_8m5c5")
 
 [node name="player" parent="." instance=ExtResource("2_kw4iq")]
-
-[node name="Hud" parent="player/SpringArm3D" index="1" instance=ExtResource("1_8wq6s")]
-mouse_filter = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.1485, 0.988912, 0, -0.988912, -0.1485, 0, 18.8403, -17.9638)
